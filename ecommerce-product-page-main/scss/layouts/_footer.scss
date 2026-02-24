@@ -1,0 +1,12 @@
+@use '../globals/colors' as c;
+
+.attribution {
+     font-size: small;
+     text-align: center;
+     font-style: italic;
+     padding: 1em;
+
+     & a {
+        color: c.$Dark-orange;
+     }
+}

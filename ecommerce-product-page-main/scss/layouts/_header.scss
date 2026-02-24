@@ -1,0 +1,128 @@
+@use "../globals/colors" as c;
+@use "../globals/tipography" as t;
+
+.header {
+  background-color: c.$White;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1.5rem 0.5rem;
+
+  &_box {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+
+    &__left {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    &__right {
+      display: none;
+
+      & ul {
+        list-style: none;
+
+        & a {
+          text-decoration: none;
+          color: c.$Very_dark_blue;
+          font-weight: t.$font-700;
+        }
+      }
+
+      &__right.display {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 70%;
+        background-color: c.$White;
+        padding: 1.5em;
+        z-index: 10;
+
+        display: flex;
+        flex-direction: column;
+        gap: 3rem;
+
+          & ul li {
+            margin-bottom: 2rem;
+          }
+      }
+    }
+
+    // &__right.display {
+    //   transform: translateX(0);
+    //   opacity: 1;
+    //   pointer-events: auto;
+
+    // }
+
+    @media (min-width: 768px) {
+      &__right {
+        position: static;
+        transform: none;
+        opacity: 1;
+        pointer-events: auto;
+
+        flex-direction: row;
+        align-items: center;
+        gap: 2rem;
+        background: none;
+        width: auto;
+        padding: 0;
+
+        transition: none; // important
+      }
+
+      & svg {
+        display: none;
+      }
+
+      ul {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin-left: 2rem;
+
+        & a {
+          color: c.$Dark_grayish_blue;
+        }
+      }
+    }
+  }
+
+  & .tooltip_box {
+    position: relative;
+
+    & .tooltip {
+      display: none;
+    }
+
+    & .visible {
+      position: absolute;
+      top: -25%;
+      right: 70%;
+      background-color: c.$Orange;
+      width: 1rem;
+      height: 1rem;
+      color: c.$White;
+      font-weight: t.$font-700;
+      border-radius: 50%;
+      display: grid;
+      place-content: center;
+      font-size: 0.75rem;
+    }
+
+    & .cart-icon:hover {
+      cursor: pointer;
+      transform: scale(1.2);
+      transition: transform 0.5s ease-in-out;
+    }
+
+    & .avatar {
+      max-width: 2rem;
+    }
+  }
+}
