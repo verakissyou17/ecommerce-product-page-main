@@ -78,7 +78,7 @@
           </ul>
         </nav>
       </div>
-      <div class="header_box tooltip_box">
+      <div class="tooltip_box">
         <svg
           class="cart-icon"
           width="22"
@@ -91,20 +91,22 @@
             fill-rule="nonzero"
           />
         </svg>
+        <span class="tooltip"></span>
+        <section class="cart_dropdown">
+          <h3 class="title">Cart</h3>
+          <article class="product">
+              <div class="inner"></div>
+              <div class="text-empty-cart">Your cart is empty</div>
+          </article>
+        </section>
         <img src="./images/image-avatar.png" alt="" class="avatar" />
       </div>
     </header>
 
-    <main>
-      <aside class="cart_container">
-        <div class="title">Cart</div>
-        <article class="product">
-          <div class="box">
-            <div class="inner"></div>
-            <div class="is-empty">Your cart is empty</div>
-          </div>
-        </article>
-      </aside>
+    <main class="main">
+      <article class="main_article__images">
+      </article>
+      <article class="main_article__text"></article>
     </main>
 
     <footer class="attribution">
@@ -115,8 +117,6 @@
       <a href="https://github.com/verakissyou17" target="_blank">Vera 💞</a>.
     </footer>
 
-    <script type="module" src="./scripts/script.js"></script>
-    <script type="module" src="./scripts/cart.js"></script>
-    <script type="module" src="./scripts/general.js"></script>
+    <script type="module" src="./scripts/app.js"></script>
   </body>
 </html>

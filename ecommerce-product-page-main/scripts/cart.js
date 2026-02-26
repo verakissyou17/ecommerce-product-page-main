@@ -1,10 +1,25 @@
 import { formatMoney } from "../utils/formatMoney.js";
-import { products } from "./script.js";
 
 export let cart = JSON.parse(localStorage.getItem("cart")) || [];
-const headerBoxTooltip = document.querySelector(".tooltip_box");
-const innerEl = document.querySelector(".inner");
-const cartEmpty = document.querySelector(".is-empty");
+let productsData = [];
+let tooltipBox;
+let innerEl;
+let cartEmpty;
+
+export function initCart(products) {
+  productsData = products;
+
+  tooltipBox = document.querySelector(".tooltip_box");
+  innerEl = tooltipBox.querySelector(".inner");
+  cartEmpty = tooltipBox.querySelector(".text-empty-cart");
+
+  const cartIcon = tooltipBox.querySelector(".cart-icon");
+  const cartContainer = tooltipBox.querySelector(".cart_dropdown");
+
+  cartIcon.addEventListener("click", () => {
+    cartContainer.classList.toggle("dropped");
+  });
+}
 
 // add to cart function
 export function addToCart(productId, quantity) {
@@ -22,25 +37,37 @@ export function addToCart(productId, quantity) {
 }
 
 // render from cart
-export function renderUI() {
+export function renderUI(products) {
+  const totalQuantity = cart.reduce((prev, curr) => prev + curr.quantity, 0);
+  const tooltipEl = tooltipBox.querySelector("span");
+
+  if (totalQuantity > 0) {
+    tooltipEl.textContent = totalQuantity;
+    tooltipEl.classList.remove("tooltip");
+    tooltipEl.classList.add("visible");
+  } else {
+    tooltipEl.textContent = "0";
+    tooltipEl.classList.remove("visible");
+    tooltipEl.classList.add("tooltip");
+  }
+
+  innerEl.innerHTML = "";
+
+  if (cart.length === 0) {
+    cartEmpty.classList.remove("hidden");
+    innerEl.classList.remove("with-items");
+    return;
+  }
+
+  cartEmpty.classList.add("hidden");
+  innerEl.classList.add("with-items");
+
   cart.forEach((cartItem) => {
-    // headerBoxTooltip.innerHTML = "";
-    innerEl.innerHTML = "";
+    const product = productsData.find((p) => p.id === cartItem.productId);
 
-    const product = products.find(
-      (product) => (product.id = cartItem.productId),
-    );
-
-    const totalQuantity = cart.reduce((prev, curr) => prev + curr.quantity, 0);
-
-    const matchingProduct = cart.find((item) => item.productId === product.id);
-    if (!matchingProduct) return;
-
+    if (!product) return;
 
     const html = `
-      <span class=${cartItem.quantity > 0 ? "visible" : "tooltip"}>${totalQuantity}</span>`;
-
-    const inner = `
               <div class="product-details">
                 <div class="image">
                   <img
@@ -50,7 +77,7 @@ export function renderUI() {
                 </div>
                 <div class="description">
                   <p>${product.name}</p>
-                  <p>$${formatMoney(product.price)} x <span>${matchingProduct.quantity}</span><strong>  $${formatMoney(product.price) * matchingProduct.quantity}</strong></p>
+                  <p>$${formatMoney(product.price)} x <span>${cartItem.quantity}</span><strong>  $${formatMoney(product.price * cartItem.quantity)}</strong></p>
                 </div>
                 <div class="delete-btn">
                   <svg
@@ -72,24 +99,14 @@ export function renderUI() {
               <a href="" class="checkout_link">Checkout</a>
         `;
 
-    headerBoxTooltip.insertAdjacentHTML("afterBegin", html);
-    innerEl.insertAdjacentHTML("afterBegin", inner);
-    innerEl.classList.add("visible");
-    cartEmpty.classList.add("hidden");
+    innerEl.insertAdjacentHTML("beforeend", html);
 
-  innerEl.querySelectorAll(".delete-btn").forEach((btn, index) => {
-    btn.addEventListener("click", () => {
-      cart.splice(index, 1);
-      localStorage.setItem("cart", JSON.stringify(cart));
-      renderUI();
+    innerEl.querySelectorAll(".delete-btn").forEach((btn, index) => {
+      btn.addEventListener("click", () => {
+        cart.splice(index, 1);
+        localStorage.setItem("cart", JSON.stringify(cart));
+        renderUI();
+      });
     });
-  });;
   });
 }
-
-const cartIcon = document.querySelector(".cart-icon");
-const cartContainer = document.querySelector(".cart_container");
-
-cartIcon.addEventListener("click", () => {
-  cartContainer.classList.toggle("visible");
-});
