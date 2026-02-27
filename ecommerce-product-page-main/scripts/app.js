@@ -12,6 +12,9 @@ document.addEventListener("DOMContentLoaded", async () => {
   const menu = document.querySelector(".menu");
   const nav = document.querySelector(".header_box__right");
   const closeBtn = document.querySelector(".close");
+  const links = nav.querySelectorAll("li a");
+  const header = document.querySelector(".header");
+  const line = header.querySelector(".line");
 
   menu.addEventListener("click", () => {
     nav.classList.add("display");
@@ -20,6 +23,18 @@ document.addEventListener("DOMContentLoaded", async () => {
   closeBtn.addEventListener("click", () => {
     nav.classList.remove("display");
   });
+
+  links.forEach((link) => {
+    link.addEventListener("mouseenter", () => {
+      const rect = link.getBoundingClientRect();
+      const headerRect = header.getBoundingClientRect();
+
+      line.style.width = rect.width + "px";
+      line.style.left = rect.left - headerRect.left + "px";
+      line.style.opacity = "1";
+    });
+  });
+
   initProduct(products);
   initCart(products);
   renderUI(products);
