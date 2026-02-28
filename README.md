@@ -22,8 +22,8 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [live](https://verakissyou17.github.io/ecommerce-product-page-main/)
+- Solution URL: [https://www.frontendmentor.io/solutions/e-commerce-product-page-with-vanilla-js-and-sass-iYePhfmZ_6]
+- Live Site URL: [lhttps://verakissyou17.github.io/ecommerce-product-page-main/e]
 
 ## My process
 
