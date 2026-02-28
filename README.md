@@ -19,11 +19,12 @@ Users should be able to:
 ### Screenshot
 
 ![](./images/screenshot.png)
+![](./images/e-commerce-main-screenshot.png)
 
 ### Links
 
 - Solution URL: [https://www.frontendmentor.io/solutions/e-commerce-product-page-with-vanilla-js-and-sass-iYePhfmZ_6]
-- Live Site URL: [lhttps://verakissyou17.github.io/ecommerce-product-page-main/e]
+- Live Site URL: [https://verakissyou17.github.io/ecommerce-product-page-main/]
 
 ## My process
 
