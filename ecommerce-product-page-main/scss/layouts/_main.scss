@@ -52,8 +52,8 @@
     }
 
     & .text {
-      color: c.$Dark_grayish_blue;
-      line-height: 1.3;
+      color: c.$Grayish_blue;
+      line-height: 1.5;
     }
 
     & .main_article__box-price {
@@ -80,7 +80,7 @@
 
       & p {
         text-decoration: line-through;
-        color: c.$Grayish_blue;
+        color: c.$Dark-grayish_blue;
         font-weight: t.$font-700;
       }
     }
@@ -119,9 +119,83 @@
   }
 }
 
-  @include b.breakpoint-up(medium) {
-    .main {
-      max-width: 80%;
-      padding-block: f.rem(80);
+@include b.breakpoint-up(medium) {
+  .main {
+    max-width: 75%;
+    padding-block: f.rem(50);
+    display: flex;
+    align-items: center;
+    gap: f.rem(80);
+
+    & .main_article__images {
+      flex-grow: 0;
+      & .main_article__image-icons {
+        & .icon {
+          display: none;
+        }
+        & .product-image {
+          margin-bottom: f.em(30);
+          border-radius: f.rem(16);
+        }
+      }
+
+      & .main_article__thumbnails {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: f.rem(36);
+
+        & .thumb {
+          border-radius: f.rem(14);
+          position: relative;
+          overflow: hidden;
+
+          & img {
+            border-radius: f.rem(14);
+          }
+        }
+
+        & .thumb.active {
+          border: 3px solid c.$Orange;
+          cursor: pointer;
+
+          &::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: rgba(255, 255, 255, 0.75);
+          }
+        }
+      }
+    }
+
+    & .main_article__text {
+      & h1 {
+        font-size: f.rem(40);
+      }
+      & .main_article__box-buttons {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: f.rem(16);
+
+        & .main_article__box-add--btn {
+          width: 30%;
+
+          & svg:hover {
+            cursor: pointer;
+          }
+        }
+
+        & .main_article__box-add-to-cart {
+          width: 70%;
+
+          &:hover {
+            background-color: c.$Pale-orange;
+            cursor: pointer;
+          }
+        }
+      }
     }
   }
+}

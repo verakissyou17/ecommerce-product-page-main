@@ -35,6 +35,12 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
+  links.forEach(link => {
+    link.addEventListener("mouseleave", () => {
+      line.style.opacity = "0";
+    })
+  })
+
   initProduct(products);
   initCart(products);
   renderUI(products);

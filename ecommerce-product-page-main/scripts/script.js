@@ -8,6 +8,15 @@ export function initProduct(products) {
 
   const product = products.find((item) => item.id === "1");
 
+  const thumbnails = product.thumbnails.map((thumbnail, index) => {
+    return `<div class="thumb">
+              <img
+              src="${thumbnail}"
+              class="thumbnail"
+              alt="thumbnail-${index}"/>
+            </div>`;
+  });
+
   if (!product) return;
 
   const imagesHTML = `
@@ -40,16 +49,9 @@ export function initProduct(products) {
               />
             </svg>
           </div>
-          <fieldset class="main_article__thumbnails">
-             ${product.thumbnails
-               .map(
-                 (thumbnail, index) => `<img
-              src="${thumbnail}"
-              alt="thumbnail-${index}"
-            />`,
-               )
-               .join("")} 
-          </fieldset>
+        </div>
+        <div class="main_article__thumbnails">
+          ${thumbnails.join("")}
         </div>
       </article>
      `;
@@ -145,25 +147,78 @@ export function initProduct(products) {
       renderUI();
     });
 
-  const prevBtn = imagesArticle.querySelector(".prev-icon");
-  const nextBtn = imagesArticle.querySelector(".next-icon");
-  const img = imagesArticle.querySelector(".product-image");
+  function changeThumbnails(container, images) {
+    const articleThumbnails = container.querySelector(
+      ".main_article__thumbnails",
+    );
+    const thumbnails = articleThumbnails.querySelectorAll(".thumb");
+    const mainImage = container.querySelector(".product-image");
 
-  let currentImage = 0;
+    thumbnails[0].classList.add("active");
 
-  prevBtn.addEventListener("click", () => {
-    currentImage--;
-    if (currentImage < 0) {
-      currentImage = product.images.length - 1;
-    }
-    img.src = product.images[currentImage];
-  });
+    thumbnails.forEach((item, index) => {
+      item.addEventListener("click", () => {
+        thumbnails.forEach((t) => t.classList.remove("active"));
+        item.classList.add("active");
+        mainImage.src = images[index];
+      });
+    });
+  }
 
-  nextBtn.addEventListener("click", () => {
-    currentImage++;
-    if (currentImage >= product.images.length) {
-      currentImage = 0;
-    }
-    img.src = product.images[currentImage];
+  changeThumbnails(imagesArticle, product.images);
+
+  function slideImages(container, images) {
+    const prevBtn = container.querySelector(".prev-icon");
+    const nextBtn = container.querySelector(".next-icon");
+    const img = container.querySelector(".product-image");
+
+    let currentImage = 0;
+
+    prevBtn.addEventListener("click", () => {
+      currentImage--;
+      if (currentImage < 0) {
+        currentImage = images.length - 1;
+      }
+      img.src = images[currentImage];
+    });
+
+    nextBtn.addEventListener("click", () => {
+      currentImage++;
+      if (currentImage >= images.length) {
+        currentImage = 0;
+      }
+      img.src = images[currentImage];
+    });
+
+    return img;
+  }
+
+  const img = slideImages(imagesArticle, product.images);
+
+  function openLightBox() {
+    const backdrop = document.createElement("div");
+    backdrop.classList.add("lightbox-backdrop");
+    document.body.appendChild(backdrop);
+
+    const clone = imagesArticle.cloneNode(true);
+    clone.classList.add("lightbox-article");
+    backdrop.appendChild(clone);
+
+    slideImages(clone, product.images);
+    changeThumbnails(clone, product.images);
+
+    const closeBtn = document.createElement("button");
+    closeBtn.classList.add("close-btn");
+    closeBtn.textContent = "X";
+
+    clone.appendChild(closeBtn);
+
+    closeBtn.addEventListener("click", () => {
+      backdrop.remove();
+    });
+  }
+
+  img.addEventListener("click", () => {
+    openLightBox();
   });
 }

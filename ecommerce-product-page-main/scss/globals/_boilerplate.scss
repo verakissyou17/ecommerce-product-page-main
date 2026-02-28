@@ -1,6 +1,7 @@
 @use "colors" as c;
 @use "tipography" as t;
 @use "../utility/breakpoints" as b;
+@use "../utility/functions.scss" as f;
 
 *,
 *::before,
@@ -19,6 +20,10 @@ body {
     max-width: 100%;
     object-fit: cover;
   }
+
+  & .lightbox-backdrop {
+    display: none;
+  }
 }
 
 @include b.breakpoint-up(medium) {
@@ -28,5 +33,99 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
+
+    & .lightbox-backdrop {
+      position: fixed;
+      inset: 0;
+      background: c.$Cover;
+      z-index: 100;
+      display: grid;
+      place-content: center;
+
+      & .lightbox-article {
+        width: f.rem(500);
+        height: f.rem(500);
+        position: relative;
+        margin-bottom: 8rem;
+
+        .close-btn {
+          position: absolute;
+          top: -8%;
+          right: 0;
+          background: transparent;
+          color: c.$White;
+          border: none;
+          font-size: f.rem(16);
+
+          &:hover {
+            color: c.$Orange;
+            cursor: pointer;
+          }
+        }
+
+        & .main_article__images {
+          & .main_article__image-icons {
+            margin-bottom: 2rem;
+            position: relative;
+
+            & .product-image {
+              border-radius: f.rem(14);
+            }
+
+            & .icon {
+              display: block;
+              background-color: white;
+              border-radius: 50%;
+              padding: 1rem;
+              position: absolute;
+              top: 40%;
+              border: none;
+              outline: none;
+
+              &:hover path {
+                stroke: c.$Orange;
+              }
+            }
+
+            & .icon.prev-icon {
+              left: -5%;
+            }
+
+            & .icon.next-icon {
+              right: -5%;
+            }
+          }
+
+          & .main_article__thumbnails {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: f.rem(18);
+
+            & .thumb {
+              border-radius: f.rem(14);
+              position: relative;
+              overflow: hidden;
+
+              & img {
+                border-radius: f.rem(14);
+              }
+            }
+
+            & .thumb.active {
+              border: 3px solid c.$Orange;
+              cursor: pointer;
+            }
+
+            & .thumb.active::after {
+              content: "";
+              position: absolute;
+              inset: 0;
+              background: rgba(255, 255, 255, 0.75);
+            }
+          }
+        }
+      }
+    }
   }
 }
