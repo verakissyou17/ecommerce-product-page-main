@@ -17,10 +17,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   const line = header.querySelector(".line");
 
   menu.addEventListener("click", () => {
+    nav.hidden = false;
     nav.classList.add("display");
   });
 
   closeBtn.addEventListener("click", () => {
+    nav.hidden = true;
     nav.classList.remove("display");
   });
 
@@ -35,11 +37,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
   });
 
-  links.forEach(link => {
+  links.forEach((link) => {
     link.addEventListener("mouseleave", () => {
       line.style.opacity = "0";
-    })
-  })
+    });
+  });
 
   initProduct(products);
   initCart(products);

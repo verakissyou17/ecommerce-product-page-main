@@ -73,7 +73,7 @@ export function initProduct(products) {
           <p>$${formatMoney(product.price)}</p>
         </section>
         <section class="main_article__box-buttons">
-          <div class="main_article__box-add--btn">
+          <div class="main_article__box-add--btn" role="button">
             <svg
               class="minus"
               width="12"
