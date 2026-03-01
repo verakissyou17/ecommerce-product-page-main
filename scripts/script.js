@@ -116,7 +116,7 @@ export function initProduct(products) {
                 fill-rule="nonzero"
               />
             </svg>
-            <button class="add-to-cart-btn">Add to cart</button>
+            <button class="add-to-cart-btn" type="button">Add to cart</button>
           </div>
         </section>
   `;

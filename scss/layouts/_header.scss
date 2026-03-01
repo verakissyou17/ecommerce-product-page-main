@@ -36,6 +36,12 @@
       transform: translateX(-100%);
       transition: transform 0.75s ease;
 
+      & .close {
+        border: none;
+        outline: none;
+        background-color: transparent;
+      }
+
       & ul {
         list-style: none;
 
@@ -194,7 +200,7 @@
     min-width: 75%;
     border-bottom: 1px solid c.$Dark_grayish_blue-alpha;
     position: relative;
-    padding: 1rem 0;
+    padding: 1.5rem 0;
 
     &_box {
       &__left {
@@ -221,16 +227,16 @@
 
           & li {
             margin-bottom: 0;
-        
-          & a {
-            color: c.$Grayish_blue;
-            font-weight: t.$font-400;
 
-            &:hover {
-              color: c.$Black;
+            & a {
+              color: c.$Grayish_blue;
+              font-weight: t.$font-400;
+
+              &:hover {
+                color: c.$Black;
+              }
             }
           }
-        }
         }
       }
     }

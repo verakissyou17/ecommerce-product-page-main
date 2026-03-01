@@ -138,6 +138,11 @@ body .lightbox-backdrop {
   transform: translateX(-100%);
   transition: transform 0.75s ease;
 }
+.header_box__right .close {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
 .header_box__right ul {
   list-style: none;
 }
@@ -270,7 +275,7 @@ body .lightbox-backdrop {
     min-width: 75%;
     border-bottom: 1px solid hsla(219, 9%, 45%, 0.4);
     position: relative;
-    padding: 1rem 0;
+    padding: 1.5rem 0;
   }
   .header_box__left .menu {
     display: none;
