@@ -52,7 +52,7 @@
     }
 
     & .text {
-      color: c.$Grayish_blue;
+      color: c.$Dark-grayish_blue;
       line-height: 1.5;
     }
 
@@ -80,7 +80,7 @@
 
       & p {
         text-decoration: line-through;
-        color: c.$Dark-grayish_blue;
+        color: c.$Grayish_blue;
         font-weight: t.$font-700;
       }
     }
@@ -125,10 +125,9 @@
     padding-block: f.rem(50);
     display: flex;
     align-items: center;
-    gap: f.rem(80);
+    gap: f.rem(160);
 
     & .main_article__images {
-      flex-grow: 0;
       & .main_article__image-icons {
         & .icon {
           display: none;
@@ -170,6 +169,7 @@
     }
 
     & .main_article__text {
+      padding: 3rem;
       & h1 {
         font-size: f.rem(40);
       }

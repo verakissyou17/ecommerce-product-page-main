@@ -185,13 +185,13 @@
     }
 
     & .avatar {
-      max-width: 2rem;
+      max-width: 2.5rem;
       margin-left: 1rem;
     }
   }
 
   & .line {
-    opacity: 0;
+    display: none;
   }
 }
 
@@ -229,7 +229,7 @@
             margin-bottom: 0;
 
             & a {
-              color: c.$Grayish_blue;
+              color: c.$Dark-grayish_blue;
               font-weight: t.$font-400;
 
               &:hover {
@@ -269,7 +269,7 @@
       position: absolute;
       bottom: -2px;
       height: 4px;
-      width: 5rem;
+      width: 0;
       z-index: 2;
       background-color: c.$Orange;
     }

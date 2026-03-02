@@ -263,11 +263,11 @@ body .lightbox-backdrop {
   display: none;
 }
 .header .tooltip_box .avatar {
-  max-width: 2rem;
+  max-width: 2.5rem;
   margin-left: 1rem;
 }
 .header .line {
-  opacity: 0;
+  display: none;
 }
 
 @media (min-width: 43.75em) {
@@ -301,7 +301,7 @@ body .lightbox-backdrop {
     margin-bottom: 0;
   }
   .header_box__right ul li a {
-    color: hsl(220, 14%, 75%);
+    color: hsl(219, 9%, 45%);
     font-weight: 400;
   }
   .header_box__right ul li a:hover {
@@ -330,7 +330,7 @@ body .lightbox-backdrop {
     position: absolute;
     bottom: -2px;
     height: 4px;
-    width: 5rem;
+    width: 0;
     z-index: 2;
     background-color: hsl(26, 100%, 55%);
   }
@@ -374,7 +374,7 @@ body .lightbox-backdrop {
   margin-block: 0.25em 0.5em;
 }
 .main .main_article__text .text {
-  color: hsl(220, 14%, 75%);
+  color: hsl(219, 9%, 45%);
   line-height: 1.5;
 }
 .main .main_article__text .main_article__box-price {
@@ -398,7 +398,7 @@ body .lightbox-backdrop {
 }
 .main .main_article__text .main_article__box-price p {
   text-decoration: line-through;
-  color: hsl(219, 9%, 45%);
+  color: hsl(220, 14%, 75%);
   font-weight: 700;
 }
 .main .main_article__text .main_article__box-buttons .main_article__box-add--btn, .main .main_article__text .main_article__box-buttons .main_article__box-add-to-cart {
@@ -433,10 +433,7 @@ body .lightbox-backdrop {
     padding-block: 3.125rem;
     display: flex;
     align-items: center;
-    gap: 5rem;
-  }
-  .main .main_article__images {
-    flex-grow: 0;
+    gap: 10rem;
   }
   .main .main_article__images .main_article__image-icons .icon {
     display: none;
@@ -468,6 +465,9 @@ body .lightbox-backdrop {
     position: absolute;
     inset: 0;
     background: rgba(255, 255, 255, 0.75);
+  }
+  .main .main_article__text {
+    padding: 3rem;
   }
   .main .main_article__text h1 {
     font-size: 2.5rem;
